@@ -3,5 +3,5 @@
 sudo /etc/init.d/mysql start
 
 mysql -uroot -e "CREATE DATABASE qa"
-#mysql -uroot -e "CREATE USER 'qauser'@'localhost' IDENTIFIED BY 'qapass';
-				# GRANT ALL ON qa.* TO 'qauser'@'localhost';"
+mysql -uroot -e "CREATE USER 'qauser'@'localhost' IDENTIFIED BY 'qapass';
+				 GRANT ALL ON qa.* TO 'qauser'@'localhost';"
