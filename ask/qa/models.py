@@ -3,6 +3,13 @@ from django.db import models
 # Create your models here.
 from django.contrib.auth.models import User
 
+class QuestionManager(models.Manager):
+        def new(self):
+                return self.order_by('-added_at')
+
+        def popular(self):
+                return self.order_by('-rating')
+
 class Question(models.Model) :
 	#id = models.IntegerField(primary_key=True)
 	objects = QuestionManager()
@@ -22,9 +29,3 @@ class Answer(models.Model) :
 	question = models.ForeignKey(Question, null=False, on_delete=models.DO_NOTHING)
         author = models.ForeignKey(User, related_name='+', default=1)
 
-class QuestionManager(models.Manager):
-	def new(self):
-        	return self.order_by('-added_at')
-	
-	def popular(self):
-        	return self.order_by('-rating')
