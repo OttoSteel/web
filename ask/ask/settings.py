@@ -78,7 +78,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql',
         'NAME': 'qa',
-	'DATABASE_HOST' : '/var/run/mysql',
+	#'DATABASE_HOST' : '/var/run/mysql',
 	'USER' : 'qauser',
         'PASSWORD' : 'qapass',
     }
