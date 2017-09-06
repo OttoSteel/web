@@ -3,6 +3,7 @@
 sudo /etc/init.d/mysql start
 
 #mysql -u root -e "CREATE DATABASE qa"/*!40100 DEFAULT CHARACTER SET utf8 */ ; 
-mysql -u root -e "CREATE USER 'qauser'@'localhost' IDENTIFIED BY 'qapass';"
+mysql -u root -e "CREATE USER 'qauser'@'localhost' IDENTIFIED BY 'qapass';
+GRANT ALL ON qa.* TO 'qauser'@'localhost';"
 #mysql -u qauser -e "CREATE DATABASE qa;"
 				 
