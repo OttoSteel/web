@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404
 from qa.models import Question, Answer
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
-from qa.models import QuestionManager
+#from qa.models import QuestionManager
 
 # Create your views here.
 
