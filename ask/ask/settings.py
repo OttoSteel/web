@@ -55,7 +55,7 @@ ROOT_URLCONF = 'ask.urls'
 WSGI_APPLICATION = 'ask.wsgi.application'
 
 TEMPLATE_DIRS = (
-	BASE_DIR + '/templates',
+	'ask/templates',
 )
 
 # Database
