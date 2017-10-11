@@ -53,7 +53,7 @@ def popular(request):
     except ValueError:
         page = 1
     paginator = Paginator(qwests, pageLimit)
-    paginator.baseurl = '/?page='
+    paginator.baseurl = 'popular/?page='
     try:
         page = paginator.page(page)
     except EmptyPage:
@@ -75,7 +75,7 @@ def question(request, quest_id):
 
     title = 'qwest ' + quest_id
 
-    user = request.user
+    #user = request.user
 
     #if user.is_authenticated():
         #form = AnswerForm(initial={'question': quest_id})
@@ -84,5 +84,5 @@ def question(request, quest_id):
         'title': title,
         'question': quest,
         'list': answers,
-        'form': form,
+        #'form': form,
     })
