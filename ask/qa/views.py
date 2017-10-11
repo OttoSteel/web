@@ -7,8 +7,6 @@ from django.core.paginator import Paginator
 
 # Create your views here.
 
-from django.http import HttpResponse
-
 
 def test(request, *args, **kwargs):
     return HttpResponse('OK')
@@ -17,21 +15,14 @@ def test(request, *args, **kwargs):
 def index(request):
     pageLimit = 10
     # Entry.objects.order_by(Coalesce('summary', 'headline').desc()) #asc()
-    qwests = Question.objects.all().order_by('-id')
+    qwests = Question.objects.new()
 
-    from django.core.paginator import Paginator
-
-    page = request.GET.get('page') or 1
-    try:
-        page = int(page)
-    except ValueError:
-        page = 1
+    page = request.GET.get('page', 1)
+    
     paginator = Paginator(qwests, pageLimit)
     paginator.baseurl = 'question/'
-    try:
-        page = paginator.page(page)
-    except EmptyPage:
-        page = paginator.page(paginator.num_pages)
+    page = paginator.page(page)
+  
     return render(request, 'questionList.html', {
         'title': 'qwests and answers',
         'list': page.object_list,
@@ -43,21 +34,14 @@ def index(request):
 def popular(request):
     pageLimit = 10
     # Entry.objects.order_by(Coalesce('summary', 'headline').desc()) #asc()
-    qwests = Question.objects.all().order_by('-likes')
+    qwests = Question.objects.popular()
 
-    from django.core.paginator import Paginator
-
-    page = request.GET.get('page') or 1
-    try:
-        page = int(page)
-    except ValueError:
-        page = 1
+    page = request.GET.get('page', 1)
+    
     paginator = Paginator(qwests, pageLimit)
     paginator.baseurl = 'question/'
-    try:
-        page = paginator.page(page)
-    except EmptyPage:
-        page = paginator.page(paginator.num_pages)
+    
+    page = paginator.page(page)
     return render(request, 'questionList.html', {
         'title': 'popular quests',
         'list': page.object_list,
@@ -73,7 +57,7 @@ def question(request, quest_id):
         raise Http404
     answers = Answer.objects.all().filter(question=quest)
 
-    title = 'qwest ' + quest_id
+    title = 'qwest_' + quest_id
 
     #user = request.user
 
