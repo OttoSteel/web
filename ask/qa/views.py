@@ -27,7 +27,7 @@ def index(request):
     except ValueError:
         page = 1
     paginator = Paginator(qwests, pageLimit)
-    paginator.baseurl = '/?page='
+    paginator.baseurl = 'question/?page='
     try:
         page = paginator.page(page)
     except EmptyPage:
@@ -53,7 +53,7 @@ def popular(request):
     except ValueError:
         page = 1
     paginator = Paginator(qwests, pageLimit)
-    paginator.baseurl = 'popular/?page='
+    paginator.baseurl = 'question/?page='
     try:
         page = paginator.page(page)
     except EmptyPage:
