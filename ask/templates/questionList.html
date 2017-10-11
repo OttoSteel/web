@@ -6,20 +6,9 @@
 	{% for obj in list %}
 		<div class="question-list">
 			<h4 class="question-list-title">{{ obj.title }}</h4>
-			
+			<h4><a href="{{ paginator.baseurl }}{{ page.number }}"> {{ page.number }}</a></h4>
 			
 		</div>
 	{% endfor %}
-	{# Peginator #}
-	<nav><ul>
-	{% for p in paginator.page_range %}
-		{% if p == page.number %}
-			<li class="paginator-active">
-		{% else %}
-			<li>
-		{% endif %}
-		<a href="{{ paginator.baseurl }}{{ p }}"> {{ p }}</a>
-		</li>
-	{% endfor %}
-	</ul></nav>
+	
 {% endblock %}
