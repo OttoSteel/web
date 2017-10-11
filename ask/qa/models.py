@@ -3,16 +3,16 @@ from django.db import models
 # Create your models here.
 from django.contrib.auth.models import User
 
-#class QuestionManager(models.Manager):
-        #def new(self):
-                #return self.order_by('-added_at')
+class QuestionManager(models.Manager):
+        def new(self):
+                return self.order_by('-id')
 
-        #def popular(self):
-                #return self.order_by('-rating')
+        def popular(self):
+                return self.order_by('-rating')
 
 class Question(models.Model) :
 	#id = models.IntegerField(primary_key=True)
-	#objects = QuestionManager()
+	objects = QuestionManager()
 	title = models.CharField(max_length=255)
 	text = models.TextField()
 	added_at = models.DateTimeField(auto_now_add=True)
