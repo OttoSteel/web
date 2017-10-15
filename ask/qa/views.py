@@ -81,7 +81,7 @@ def ask(request) :
 			
 			quest = form.save()
 				#print("QUEST IS CREATE!!!!!!!!!!")
-			url = quest.get_absolute_url()
+			url = quest.get_url()
 				#print("URL = " + url +"!!!!!!!!!")
 			return HttpResponseRedirect(url)
 			
