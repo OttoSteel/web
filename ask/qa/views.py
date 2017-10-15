@@ -3,7 +3,7 @@ from django.http import HttpResponse, Http404
 from qa.models import Question, Answer
 from django.contrib.auth.models import User
 from django.core.paginator import Paginator
-#from qa.models import QuestionManager
+from qa.models import QuestionManager
 
 # Create your views here.
 
@@ -70,3 +70,33 @@ def question(request, quest_id):
         'list': answers,
         #'form': form,
     })
+
+def ask(request) :
+	user = request.user
+	if request.method == "POST" :
+		#print("POST!!!!!!!!!!!!!!!!!!!!!!!!!")
+		form = AskForm(request.POST)
+		if form.is_valid() :
+			
+			quest = form.save()
+				#print("QUEST IS CREATE!!!!!!!!!!")
+			url = quest.get_absolute_url()
+				#print("URL = " + url +"!!!!!!!!!")
+			return HttpResponseRedirect(url)
+			
+	else :
+		form = AskForm()
+	return render(request, 'ask_add.html', {
+		'form' : form
+	})
+	
+def answer(request) :
+	user = request.user
+	if request.method == "POST" :
+		form = AnswerForm(request.POST)
+		if form.is_valid():
+			
+			answer = form.save()
+			url = '/question/' + form.question
+			return HttpResponseRedirect(url)
+	
